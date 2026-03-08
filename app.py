@@ -444,17 +444,17 @@ def inject_custom_css(dark_mode: bool) -> None:
                 margin-bottom: 0.35rem;
             }}
 
-            .decision-approve {{
-                background: linear-gradient(90deg, rgba(22, 163, 74, 0.18), rgba(16, 185, 129, 0.18));
-                border: 1px solid rgba(34, 197, 94, 0.8);
-                color: #DCFCE7;
-            }}
+           .decision-approve {{
+    background: linear-gradient(90deg, rgba(22, 163, 74, 0.18), rgba(16, 185, 129, 0.18));
+    border: 1px solid rgba(34, 197, 94, 0.8);
+    color: {"#DCFCE7" if dark_mode else "#0A1628"};
+}}
 
-            .decision-reject {{
-                background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), rgba(248, 113, 113, 0.16));
-                border: 1px solid rgba(248, 113, 113, 0.9);
-                color: #FEE2E2;
-            }}
+.decision-reject {{
+    background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), rgba(248, 113, 113, 0.16));
+    border: 1px solid rgba(248, 113, 113, 0.9);
+    color: {"#FEE2E2" if dark_mode else "#0A1628"};
+}}
 
             /* CAM output */
             .cam-box {{
@@ -693,7 +693,48 @@ if not dark_mode:
 [data-testid="stHeader"] span {
     color: #FFFFFF !important;
 }
-    </style>
+    /* Fix tab text colors in light mode */
+    [data-testid="stTabs"] button {
+        color: #0A1628 !important;
+    }
+    [data-testid="stTabs"] button[aria-selected="true"] {
+        color: #0A1628 !important;
+        border-bottom-color: #F59E0B !important;
+    }
+    [data-testid="stTabs"] button p {
+        color: #0A1628 !important;
+    }
+    /* Fix chat bot message text in light mode */
+    [data-testid="stChatMessage"] p {
+        color: #0A1628 !important;
+    }
+    [data-testid="stChatMessage"] div {
+        color: #0A1628 !important;
+    }
+    [data-testid="stChatMessageContent"] {
+        color: #0A1628 !important;
+    }
+    /* Download button text white */
+[data-testid="stDownloadButton"] button {
+    color: #FFFFFF !important;
+}
+    /* Fix download button text */
+[data-testid="stDownloadButton"] > button {
+    color: #FFFFFF !important;
+    background: linear-gradient(90deg, #FACC15, #F59E0B, #F97316) !important;
+}
+[data-testid="stDownloadButton"] > button p {
+    color: #FFFFFF !important;
+}
+
+/* Fix blinking cursor color in input fields */
+input {
+    caret-color: #0A1628 !important;
+}
+textarea {
+    caret-color: #0A1628 !important;
+}
+   </style>
     """
     st.markdown(light_fixes, unsafe_allow_html=True)
 

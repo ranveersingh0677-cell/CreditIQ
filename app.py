@@ -734,6 +734,10 @@ input {
 textarea {
     caret-color: #0A1628 !important;
 }
+/* Chat input cursor white in light mode */
+[data-testid="stChatInputTextArea"] textarea {
+    caret-color: #FFFFFF !important;
+}
    </style>
     """
     st.markdown(light_fixes, unsafe_allow_html=True)
